@@ -1,0 +1,9 @@
+import React from "react";
+import "./sass/style.scss";
+import Layout from "./components/layout/Layout";
+
+function App() {
+  return <Layout></Layout>;
+}
+
+export default App;

@@ -1,0 +1,156 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+#root {
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+a {
+  font-family: "Rokkitt", serif;
+  color: $gold;
+  text-shadow: 4px 0px $darkGold;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 200;
+  margin: 0;
+
+  @media #{$tablet} {
+    text-shadow: 2px 0px $darkGold;
+  }
+
+  @media #{$phone} {
+    text-shadow: 2px 0px $darkGold;
+  }
+}
+
+p {
+  font-family: "Open Sans";
+}
+
+h1 {
+  font-size: 6vw;
+}
+
+h2 {
+  font-size: 4vw;
+}
+
+a {
+  font-size: 3.5vw;
+}
+
+header {
+  width: 1200px;
+  margin: auto;
+  @media #{$tablet} {
+    width: 90%;
+  }
+
+  @media #{$phone} {
+    width: 90%;
+  }
+
+  img {
+    display: block;
+    margin: auto;
+    width: 350px;
+
+    @media #{$tablet} {
+      width: 250px;
+    }
+
+    @media #{$phone} {
+      width: 200px;
+    }
+  }
+
+  a {
+    display: block;
+    background: #3d3429;
+    border: solid 2px;
+    border-radius: 5px;
+    padding: 15px 10px;
+    width: 35%;
+    height: auto;
+    margin: auto;
+  }
+
+  a:hover {
+    filter: hue-rotate(45deg);
+  }
+
+  p {
+    color: $white;
+    width: 800px;
+
+    @media #{$tablet} {
+      width: 80%;
+    }
+
+    @media #{$phone} {
+      width: 80%;
+    }
+
+    margin: 0px auto 25px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+#modal {
+  display: none;
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  margin: auto;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 1);
+
+  @media #{$tablet} {
+    background-color: #000;
+  }
+
+  @media #{$phone} {
+    background-color: #000;
+  }
+
+  .start_btn {
+    display: block;
+    position: relative;
+
+    @media #{$tablet} {
+      position: fixed;
+      top: initial;
+      bottom: 5%;
+      right: 1%;
+      font-size: 3vw;
+    }
+
+    @media #{$phone} {
+      position: fixed;
+      top: initial;
+      bottom: 5%;
+      right: 1%;
+    }
+  }
+
+  .start_btn:hover {
+    filter: hue-rotate(45deg);
+  }
+}
+
+.container {
+  background-image: url(../../img/brown-open-field-2305169.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+  margin: auto;
+  display: flex;
+}

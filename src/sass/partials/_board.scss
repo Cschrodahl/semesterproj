@@ -1,0 +1,78 @@
+.boardContainer {
+  background-image: url(../../img/brown-open-field-2305169.jpg);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+}
+.board {
+  height: 91%;
+  width: 90%;
+  margin: auto;
+  outline: 3px solid #111;
+  background: #333;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  p {
+    text-align: center;
+  }
+
+  span {
+    font-size: 40px;
+    text-align: center;
+    margin: auto;
+    vertical-align: bottom;
+    display: block;
+  }
+
+  &__tile {
+    padding: 8% 0;
+    position: relative;
+    min-height: fit-content;
+    background: $lightBeige;
+    background-image: url(../../img/dark-denim-3.png);
+  }
+
+  &__punish {
+    color: $Red;
+    background: $darkBeige;
+    background-image: url(../../img/dark-denim-3.png);
+  }
+
+  &__center {
+    grid-column: 2 e("/") 8;
+    grid-row: 2 e("/") 6;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    background-image: url(../../img/map.jpg);
+  }
+
+  &__player {
+    position: absolute;
+    left: 18%;
+    top: 10%;
+
+    img {
+      display: block;
+      margin: auto;
+      width: 110px;
+      height: auto;
+      background-size: contain;
+    }
+  }
+
+  &__dice {
+    grid-row: 4;
+    width: 150px;
+    height: 100px;
+
+    #canvasDice {
+      position: relative;
+      bottom: 30px;
+      right: 100px;
+    }
+  }
+}
