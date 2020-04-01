@@ -1,14 +1,16 @@
 import React from "react";
-//import {
-//  BrowserRouter as Router,
-//  Switch,
-//  Route,
-//  NavLink
-//} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../home/Home";
-//import Board from "../boardgame/Board";
+import Board from "../boardgame/Board";
 function Layout() {
-  return <Home></Home>;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/boardgame" exact component={Board} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default Layout;
