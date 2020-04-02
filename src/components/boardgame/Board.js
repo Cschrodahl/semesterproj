@@ -1,6 +1,7 @@
 import React from "react";
 import Tiles from "./Tiles";
-import Dice from "./Dice";
+
+import RollDice from "./dice/RollDice";
 function Board() {
   let addTiles = [];
   for (let i = 0; i < 24; i++) {
@@ -10,7 +11,7 @@ function Board() {
     <main className="boardContainer">
       <div className="board">
         <div className="board__center">
-          <Dice />
+          <RollDice />
         </div>
         {addTiles}
       </div>
