@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Anchor, useRender } from "react-zdog";
-import { TAU } from "zdog";
+//import { TAU } from "zdog";
+import { TAU, lerp, easeInOut } from "zdog";
 import Faces from "./Faces";
 import One from "./sides/One";
 import Two from "./sides/Two";
@@ -8,7 +9,7 @@ import Three from "./sides/Three";
 import Four from "./sides/Four";
 import Five from "./sides/Five";
 import Six from "./sides/Six";
-function DiceAnchor() {
+function DiceAnchor({ roll }) {
   const rotation = [
     {
       x: 0,
@@ -47,15 +48,16 @@ function DiceAnchor() {
       value: 6
     }
   ];
-  var rolled = 2;
+  console.log("roll", roll);
   let ref = useRef(undefined);
+
   useRender(() => {
-    ref.current.rotate.x = rotation[rolled - 1].x;
-    ref.current.rotate.y = rotation[rolled - 1].y;
-    ref.current.rotate.z = rotation[rolled - 1].z;
+    ref.current.rotate.x = rotation[roll - 1].x + TAU * roll;
+    ref.current.rotate.y = rotation[roll - 1].y + TAU * roll;
+    ref.current.rotate.z = TAU * roll;
   });
   return (
-    <Anchor ref={ref}>
+    <Anchor ref={ref} roll={roll}>
       <Faces />
       <One translate={{ z: 30 }} />
       <Two

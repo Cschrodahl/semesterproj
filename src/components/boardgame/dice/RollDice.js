@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Dice from "./Dice";
 function RollDice() {
+  const [roll, setRoll] = useState(1);
   return (
     <div
-      onClick={event => {
-        console.log(event, "hei");
-      }}
+      onClick={() => setRoll(roll - roll + Math.floor(Math.random() * 6) + 1)}
     >
-      <Dice canvas={"canvasDice"} />
+      <Dice roll={roll} canvas={"canvasDice"} />
     </div>
   );
 }
+
 export default RollDice;
