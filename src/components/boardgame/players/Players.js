@@ -12,18 +12,17 @@ function Players() {
           name: getPlayer[key],
           position: 0,
           border:
-            index == 0
+            index === 0
               ? "img/player1_border-01.png"
               : "img/player2_border-02.png",
-          color: index == 0 ? "#d60000" : "#0000ff"
+          color: index === 0 ? "#d60000" : "#0000ff"
         });
         index++;
       }
       return value;
     });
     setCurrentPLayers(Player);
-  }, []);
-  console.log(currentPlayers);
+  }, [Player]);
   return (
     <div>
       {currentPlayers.map((players, index) => {

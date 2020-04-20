@@ -11,11 +11,12 @@ function Board() {
         data={i}
         key={i}
         index={i}
+        pos={2}
         players={<Players />}
       ></Tiles>
     );
   }
-  console.log(<RollDice />);
+  console.log(RollDice.call());
   return (
     <main className="boardContainer">
       <div className="board">
