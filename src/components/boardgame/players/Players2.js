@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-//import RollDice from "./../dice/RollDice";
-//import Tiles from "./../Tiles";
-function Players(props) {
+
+function Players2(props) {
   const [Player, setPlayer] = useState([]);
   const [currentPlayers, setCurrentPLayers] = useState([]);
   useEffect(() => {
@@ -28,14 +27,14 @@ function Players(props) {
   return (
     <div>
       {currentPlayers.map((players, index) => {
-        const { border, player, position } = players;
+        const { border, color, player, position } = players;
         return (
           <div
             key={index}
             className={("board__player", player)}
             data-pos={position}
           >
-            <img src={border} alt={player} />
+            <img src={border} />
             dd
           </div>
         );
@@ -44,4 +43,4 @@ function Players(props) {
   );
 }
 
-export default Players;
+export default Players2;

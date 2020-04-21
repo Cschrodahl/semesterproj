@@ -1,11 +1,10 @@
 import React from "react";
 //import Players from "./players/Players";
 //import RollDice from "./dice/RollDice";
-function Tiles({ data, index, players, pos }) {
+function Tiles({ data, index }) {
   return (
     <div className="board__tile" data-p={data}>
       {index}
-      {index == pos ? players : <div></div>}
     </div>
   );
 }

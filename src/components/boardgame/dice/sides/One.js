@@ -3,7 +3,7 @@ import { Ellipse } from "react-zdog";
 function One({ translate, rotate }) {
   return (
     <Ellipse
-      diameter={15}
+      diameter={11}
       fill={true}
       stroke={false}
       color={"hsl(0, 0%, 100%)"}
