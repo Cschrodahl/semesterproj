@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import img from "../../../";
 //import RollDice from "./../dice/RollDice";
 //import Tiles from "./../Tiles";
 function Players(props) {
@@ -11,11 +12,11 @@ function Players(props) {
         value.push({
           player: key,
           name: getPlayer[key],
-          position: 0,
+          position: 1,
           border:
             index === 0
-              ? "img/player1_border-01.png"
-              : "img/player2_border-02.png",
+              ? require("../../../img/player1_border-01.png")
+              : require("../../../img/player2_border-02.png"),
           color: index === 0 ? "#d60000" : "#0000ff",
         });
         index++;
@@ -24,7 +25,7 @@ function Players(props) {
     });
     setCurrentPLayers(Player);
   }, [Player]);
-
+  //console.log(img);
   return (
     <div>
       {currentPlayers.map((players, index) => {
