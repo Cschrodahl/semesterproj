@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-function Players() {
+function Players({ pos }) {
   const [Player, setPlayer] = useState([]);
   const [currentPlayers, setCurrentPLayers] = useState([]);
   useEffect(() => {
@@ -9,7 +9,7 @@ function Players() {
         value.push({
           player: key,
           name: getPlayer[key],
-          position: 1,
+          position: 0,
           border:
             index === 0
               ? require("../../../img/player1_border-01.png")
@@ -23,12 +23,10 @@ function Players() {
 
     setCurrentPLayers(Player);
   }, [Player]);
-  console.log("rere");
   return (
     <div>
       {currentPlayers.map((players, index) => {
         const { border, player, position } = players;
-        console.log(border, player, position);
         return (
           <div
             key={index}

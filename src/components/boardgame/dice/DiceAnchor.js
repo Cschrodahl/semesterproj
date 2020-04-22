@@ -58,7 +58,6 @@ function DiceAnchor({ roll }) {
   useEffect(() => {
     setRolled(roll);
   }, [roll]);
-  console.log(roll);
   return (
     <Anchor ref={ref} rolled={rolled} roll={roll}>
       <Faces />
