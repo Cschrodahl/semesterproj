@@ -7,7 +7,7 @@ function RollDice({ value }) {
     <div
       onClick={(event) => {
         setRoll(roll - roll + Math.floor(Math.random() * 6) + 1);
-        value(event);
+        return value(event, roll);
       }}
       key={roll}
     >

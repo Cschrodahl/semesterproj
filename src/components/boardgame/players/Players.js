@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import img from "../../../";
 //import RollDice from "./../dice/RollDice";
 //import Tiles from "./../Tiles";
-function Players(props) {
+function Players({ turn }) {
   const [Player, setPlayer] = useState([]);
   const [currentPlayers, setCurrentPLayers] = useState([]);
   useEffect(() => {
@@ -30,16 +30,18 @@ function Players(props) {
     <div>
       {currentPlayers.map((players, index) => {
         const { border, player, position } = players;
-        return (
-          <div
-            key={index}
-            className={("board__player", player)}
-            data-pos={position}
-          >
-            <img src={border} alt={player} />
-            dd
-          </div>
-        );
+        console.log(border, player, position);
+        if (turn === index) {
+          return (
+            <div
+              key={index}
+              className={("board__player", player)}
+              data-pos={position}
+            >
+              <img src={border} alt={player} />
+            </div>
+          );
+        }
       })}
     </div>
   );
