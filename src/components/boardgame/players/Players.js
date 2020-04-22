@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import img from "../../../";
-//import RollDice from "./../dice/RollDice";
-//import Tiles from "./../Tiles";
-function Players({ turn }) {
+function Players() {
   const [Player, setPlayer] = useState([]);
   const [currentPlayers, setCurrentPLayers] = useState([]);
   useEffect(() => {
@@ -23,25 +20,25 @@ function Players({ turn }) {
       }
       return value;
     });
+
     setCurrentPLayers(Player);
   }, [Player]);
-  //console.log(img);
+  console.log("rere");
   return (
     <div>
       {currentPlayers.map((players, index) => {
         const { border, player, position } = players;
         console.log(border, player, position);
-        if (turn === index) {
-          return (
-            <div
-              key={index}
-              className={("board__player", player)}
-              data-pos={position}
-            >
-              <img src={border} alt={player} />
-            </div>
-          );
-        }
+        return (
+          <div
+            key={index}
+            className={("board__player", player)}
+            data-pos={position}
+          >
+            <img src={border} alt={player} />
+            ss
+          </div>
+        );
       })}
     </div>
   );

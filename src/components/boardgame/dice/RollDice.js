@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Dice from "./Dice";
-function RollDice({ value }) {
+function RollDice() {
   const [roll, setRoll] = useState(1);
 
   return (
     <div
-      onClick={(event) => {
+      onClick={() => {
         setRoll(roll - roll + Math.floor(Math.random() * 6) + 1);
-        return value(event, roll);
       }}
       key={roll}
     >
