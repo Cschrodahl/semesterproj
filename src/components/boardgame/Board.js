@@ -5,7 +5,6 @@ import Players from "./players/Players";
 let currentPlayerTurn = 1;
 function Board() {
   let addTiles = [];
-  //const [PlayerPosition, setPlayerPosition] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState([]);
   const [currentScore, setCUrrentPlayerScore] = useState(0);
   useEffect(() => {
@@ -27,7 +26,7 @@ function Board() {
 
     setCurrentPlayer(players);
   }, []);
-  //console.log(currentPlayer);
+  //Creating tiles index
   for (let i = 1; i < 25; i++) {
     addTiles.push(i);
   }
@@ -42,10 +41,8 @@ function Board() {
     if (currentPlayerTurn >= 2) {
       currentPlayerTurn = 0;
     }
-    //console.log(currentPlayerTurn);
     return <Tiles player={currentPlayer[currentPlayerTurn].Score} />;
   };
-  console.log(currentPlayer[currentPlayerTurn]);
   return (
     <main className="boardContainer">
       <div className="board">
