@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-function Players({ pos }) {
-  const [Player, setPlayer] = useState([]);
+import React from "react";
+function Players({ playerTurn, border, token }) {
+  /* const [Player, setPlayer] = useState([]);
   const [currentPlayers, setCurrentPLayers] = useState([]);
+
   useEffect(() => {
     const getPlayer = { ...localStorage };
     setPlayer(function (value, index = 0) {
@@ -20,10 +21,20 @@ function Players({ pos }) {
       }
       return value;
     });
-
     setCurrentPLayers(Player);
   }, [Player]);
+  console.log(currentPlayers);*/
   return (
+    <div className={"board__player " + playerTurn + ""}>
+      <img
+        src={border}
+        alt={playerTurn}
+        style={{ backgroundImage: " url(" + token + ")" }}
+      />
+    </div>
+  );
+}
+/** return (
     <div>
       {currentPlayers.map((players, index) => {
         const { border, player, position } = players;
@@ -39,7 +50,5 @@ function Players({ pos }) {
         );
       })}
     </div>
-  );
-}
-
+  ); */
 export default Players;

@@ -1,20 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Tiles from "./Tiles";
 import RollDice from "./dice/RollDice";
 import Players from "./players/Players";
-//import Spiller from "./players/p1";
+let currentPlayerTurn = 1;
 function Board() {
   let addTiles = [];
-  let player1Score = 3;
+  //const [PlayerPosition, setPlayerPosition] = useState(0);
+  const [currentPlayer, setCurrentPlayer] = useState([]);
+  const [currentScore, setCUrrentPlayerScore] = useState(0);
+  useEffect(() => {
+    const getPlayer = { ...localStorage };
+    const players = [];
+    for (let key in getPlayer) {
+      const { name, ID, token } = JSON.parse(getPlayer[key]);
+      console.log(name);
+      players.push({
+        player: name,
+        image:
+          ID === 0
+            ? require("../../img/player1_border-01.png")
+            : require("../../img/player2_border-02.png"),
+        Score: 0,
+        token: require("../../img/tokens/token-" + token + ".png"),
+      });
+    }
 
-  for (let i = 0; i < 24; i++) {
+    setCurrentPlayer(players);
+  }, []);
+  //console.log(currentPlayer);
+  for (let i = 1; i < 25; i++) {
     addTiles.push(i);
   }
   const playerTurn = (event, value) => {
-    console.log(value);
-    player1Score = value;
-    return <Tiles player={value} />;
+    currentPlayer[currentPlayerTurn].Score += value;
+    if (currentPlayer[currentPlayerTurn].Score === 10) {
+      currentPlayer[currentPlayerTurn].Score = 1;
+      console.log("go back to square 1");
+    }
+    setCUrrentPlayerScore(currentPlayer[currentPlayerTurn].Score);
+    currentPlayerTurn++;
+    if (currentPlayerTurn >= 2) {
+      currentPlayerTurn = 0;
+    }
+    //console.log(currentPlayerTurn);
+    return <Tiles player={currentPlayer[currentPlayerTurn].Score} />;
   };
+  console.log(currentPlayer[currentPlayerTurn]);
   return (
     <main className="boardContainer">
       <div className="board">
@@ -26,7 +57,15 @@ function Board() {
             <Tiles
               key={i}
               index={i}
-              player={player1Score === i ? <Players /> : null}
+              player={
+                currentScore === i ? (
+                  <Players
+                    border={currentPlayer[currentPlayerTurn].image}
+                    playerTurn={currentPlayer[currentPlayerTurn].player}
+                    token={currentPlayer[currentPlayerTurn].token}
+                  />
+                ) : null
+              }
             />
           );
         })}
