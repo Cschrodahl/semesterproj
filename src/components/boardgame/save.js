@@ -3,7 +3,6 @@ import Tiles from "./Tiles";
 import RollDice from "./dice/RollDice";
 import Players from "./players/Players";
 let currentPlayerTurn = 1;
-
 function Board() {
   let addTiles = [];
   const [currentPlayer, setCurrentPlayer] = useState([]);
@@ -25,9 +24,9 @@ function Board() {
         token: require("../../img/tokens/token-" + token + ".png"),
       });
     }
+
     setCurrentPlayer(players);
   }, []);
-  console.log(currentPlayer);
   //Creating tiles index
   for (let i = 1; i < 25; i++) {
     addTiles.push(i);
@@ -43,46 +42,31 @@ function Board() {
     if (currentPlayerTurn >= 2) {
       currentPlayerTurn = 0;
     }
-
-    return (
-      <Tiles
-        player1={currentPlayer[0].Score}
-        player2={currentPlayer[1].Score}
-      />
-    );
+    return <Tiles player={currentPlayer[currentPlayerTurn].Score} />;
   };
   return (
     <main className="boardContainer">
       <div className="board">
+        <div className="board__center">
+          <RollDice value={playerTurn} />
+        </div>
         {addTiles.map((i) => {
           return (
             <Tiles
               key={i}
               index={i}
-              player1={
+              player={
                 currentScore === i ? (
                   <Players
-                    border={currentPlayer[0].image}
-                    playerTurn={currentPlayer[0].player}
-                    token={currentPlayer[0].token}
-                  />
-                ) : null
-              }
-              player2={
-                currentScore === i ? (
-                  <Players
-                    border={currentPlayer[1].image}
-                    playerTurn={currentPlayer[1].player}
-                    token={currentPlayer[1].token}
+                    border={currentPlayer[currentPlayerTurn].image}
+                    playerTurn={currentPlayer[currentPlayerTurn].player}
+                    token={currentPlayer[currentPlayerTurn].token}
                   />
                 ) : null
               }
             />
           );
         })}
-        <div className="board__center">
-          <RollDice value={playerTurn} />
-        </div>
       </div>
     </main>
   );
