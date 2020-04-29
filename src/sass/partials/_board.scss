@@ -52,18 +52,16 @@
 
   &__player {
     position: absolute;
-    left: 18%;
+    left: 8%;
     top: 10%;
-
     img {
       display: block;
       margin: auto;
-      width: 110px;
+      width: 55%;
       height: auto;
       background-size: contain;
     }
   }
-
   &__dice {
     grid-row: 4;
     width: 150px;
@@ -74,5 +72,20 @@
       bottom: 30px;
       right: 100px;
     }
+  }
+
+  &__dice:hover {
+    cursor: pointer;
+  }
+  &__playerMessage {
+    grid-row: 4;
+    color: $white;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: relative;
+    right: 45%;
+    bottom: -55%;
+    width: fit-content;
+    height: 30px;
   }
 }

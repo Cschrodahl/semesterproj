@@ -9,15 +9,38 @@ let currentPlayerTurn = 0;
 function Board() {
   let addTiles = [];
   const [currentPlayer, setCurrentPlayer] = useState([]);
-  const [currentScore, setCurrentPlayerScore] = useState(0);
-  const [currentScore1, setCurrentPlayerScore1] = useState(0);
+  const [currentScorePlayer1, setCurrentScorePlayer1] = useState(0);
+  const [currentScorePlayer2, setCurrentScorePlayer2] = useState(0);
+  const [trapMessage, setTrapMessage] = useState("");
 
+  //Player traps
+  const traps = [
+    {
+      trapPosition: 7,
+      goBackTo: 4,
+      Message: " Hit a trap, and must go back 3 steps",
+    },
+    {
+      trapPosition: 12,
+      goBackTo: 9,
+      Message: " Hit a trap, and must go back 3 steps",
+    },
+    {
+      trapPosition: 17,
+      goBackTo: 14,
+      Message: " Hit a trap, and must go back 3 steps",
+    },
+    {
+      trapPosition: 22,
+      goBackTo: 18,
+      Message: " Hits a trap, and must go back 4 steps",
+    },
+  ];
   useEffect(() => {
     const getPlayer = { ...localStorage };
     const players = [];
     for (let key in getPlayer) {
       const { name, ID, token } = JSON.parse(getPlayer[key]);
-      console.log(name);
       players.push({
         player: name,
         image:
@@ -26,6 +49,7 @@ function Board() {
             : require("../../img/player2_border-02.png"),
         Score: 0,
         token: require("../../img/tokens/token-" + token + ".png"),
+        players: ID === 0 ? "Player1" : "Player2",
       });
     }
     setCurrentPlayer(players);
@@ -37,24 +61,44 @@ function Board() {
 
   const playerTurn = (event, rolled) => {
     currentPlayer[currentPlayerTurn].Score += rolled;
-    if (currentPlayer[currentPlayerTurn].Score === 10) {
-      currentPlayer[currentPlayerTurn].Score = 1;
-      console.log("go back to square 1");
+
+    //When a player wins
+    if (currentPlayer[currentPlayerTurn].Score >= 24) {
+      localStorage.clear();
+      localStorage.setItem(
+        "winner",
+        JSON.stringify(currentPlayer[currentPlayerTurn])
+      );
+      window.location.href = "/endgame";
     }
-    if (currentPlayerTurn === 0) {
-      setCurrentPlayerScore(currentPlayer[currentPlayerTurn].Score);
+    const setTrap = traps.find(
+      ({ trapPosition }) =>
+        trapPosition === currentPlayer[currentPlayerTurn].Score
+    );
+    //creating the message when a player rolles
+    let message = "";
+    if (setTrap) {
+      currentPlayer[currentPlayerTurn].Score = setTrap.goBackTo;
+      message = `Player${currentPlayerTurn + 1}: ${
+        currentPlayer[currentPlayerTurn].player
+      } ${setTrap.Message}`;
     } else {
-      setCurrentPlayerScore1(currentPlayer[currentPlayerTurn].Score);
+      message = `Player${
+        currentPlayerTurn + 1
+      } rolled a ${rolled}, move foward ${rolled} spaces`;
+    }
+    setTrapMessage(message);
+    if (currentPlayerTurn === 0) {
+      setCurrentScorePlayer1(currentPlayer[currentPlayerTurn].Score);
+    } else {
+      setCurrentScorePlayer2(currentPlayer[currentPlayerTurn].Score);
     }
     //Toggle player turn
     currentPlayerTurn++;
     if (currentPlayerTurn >= 2) {
       currentPlayerTurn = 0;
     }
-    console.log(
-      currentPlayer[currentPlayerTurn].player,
-      currentPlayer[currentPlayerTurn].Score
-    );
+
     //updating player position
     return (
       <Tiles
@@ -67,12 +111,16 @@ function Board() {
     <main className="boardContainer">
       <div className="board">
         {addTiles.map((i) => {
+          const TrapTiles = traps.find(
+            ({ trapPosition }) => trapPosition === i
+          );
           return (
             <Tiles
+              trap={TrapTiles ? "board__punish" : ""}
               key={i}
               index={i}
               player1={
-                currentScore === i ? (
+                currentScorePlayer1 === i ? (
                   <Players
                     border={currentPlayer[0].image}
                     playerTurn={currentPlayer[0].player}
@@ -81,7 +129,7 @@ function Board() {
                 ) : null
               }
               player2={
-                currentScore1 === i ? (
+                currentScorePlayer2 === i ? (
                   <Players
                     border={currentPlayer[1].image}
                     playerTurn={currentPlayer[1].player}
@@ -94,33 +142,10 @@ function Board() {
         })}
         <div className="board__center">
           <RollDice rolled={playerTurn} />
+          <div className="board__playerMessage">{trapMessage}</div>
         </div>
       </div>
     </main>
   );
 }
 export default Board;
-/** <Tiles
-              key={i}
-              index={i}
-              player1={
-                currentScore === i ? (
-                  <Players
-                    border={currentPlayer[0].image}
-                    playerTurn={currentPlayer[0].player}
-                    token={currentPlayer[0].token}
-                  />
-                ) : null
-              }
-              player2={
-                currentScore1 === i ? (
-                  <Players
-                    border={currentPlayer[1].image}
-                    playerTurn={currentPlayer[1].player}
-                    token={currentPlayer[1].token}
-                  />
-                ) : null
-              }
-            />
-          );
-        })} */

@@ -1,10 +1,10 @@
 import React from "react";
-function Tiles({ index, player1, player2 }) {
+function Tiles({ index, player1, player2, trap }) {
   return (
-    <div className="board__tile" data-p={index}>
+    <div className={"board__tile " + trap} data-p={index}>
       <span>{index}</span>
-      <div>{player1}</div>
-      <div>{player2}</div>
+      <>{player1}</>
+      <>{player2}</>
     </div>
   );
 }

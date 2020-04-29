@@ -5,6 +5,7 @@ function HomeModal() {
     <div id="modal">
       <CharacterList />
       <button
+        className="start_btn"
         onClick={() => {
           if (
             localStorage.getItem("player1") &&
@@ -14,7 +15,7 @@ function HomeModal() {
           }
         }}
       >
-        start
+        START
       </button>
     </div>
   );

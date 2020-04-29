@@ -1,11 +1,12 @@
 import React from "react";
-function CharacterItem({ name, gender, culture, image, choose, ID }) {
+function CharacterItem({ name, gender, culture, image, choose, ID, card }) {
   return (
     <div
       className="card__character"
       onClick={choose}
       data-name={name}
       data-id={ID}
+      style={{ backgroundImage: `url(${card})` }}
     >
       <div className="card__details">
         <img className="card__token" src={image} alt={name} />

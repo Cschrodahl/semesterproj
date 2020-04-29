@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CharacterItem from "./CharacterItem";
 import { Character_URL } from "../../constants/api";
 import Tokens from "../../constants/Tokens";
+import Cards from "../../constants/Cards";
 import ChooseCharacter from "./ChooseCharacter";
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
@@ -18,6 +19,7 @@ function CharacterList() {
               gender: result[key].gender,
               culture: result[key].culture,
               image: Tokens[count],
+              cards: Cards[count],
               id: "0" + count,
             });
             if (key % 2) {
@@ -34,12 +36,13 @@ function CharacterList() {
   return (
     <div className="card">
       {characters.map((char, index) => {
-        const { name, gender, culture, image, id } = char;
+        const { name, gender, culture, image, id, cards } = char;
         return (
           <CharacterItem
             name={name}
             gender={gender}
             culture={culture}
+            card={cards}
             image={image}
             key={index}
             ID={id}

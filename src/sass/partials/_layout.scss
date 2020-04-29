@@ -10,10 +10,10 @@ h1,
 h2,
 h3,
 h4,
-a {
+button {
   font-family: "Rokkitt", serif;
   color: $gold;
-  text-shadow: 4px 0px $darkGold;
+  text-shadow: 3px 0px $darkGold;
   text-align: center;
   letter-spacing: 3px;
   font-weight: 200;
@@ -40,8 +40,9 @@ h2 {
   font-size: 4vw;
 }
 
-a {
-  font-size: 3.5vw;
+button {
+  font-size: 3vw;
+  outline: none;
 }
 
 header {
@@ -69,7 +70,7 @@ header {
     }
   }
 
-  a {
+  button {
     display: block;
     background: #3d3429;
     border: solid 2px;
@@ -80,8 +81,9 @@ header {
     margin: auto;
   }
 
-  a:hover {
+  button:hover {
     filter: hue-rotate(45deg);
+    cursor: pointer;
   }
 
   p {
@@ -123,6 +125,9 @@ header {
   .start_btn {
     display: block;
     position: relative;
+    margin: auto;
+    background-color: $black;
+    border: none;
 
     @media #{$tablet} {
       position: fixed;
@@ -142,6 +147,7 @@ header {
 
   .start_btn:hover {
     filter: hue-rotate(45deg);
+    cursor: pointer;
   }
 }
 

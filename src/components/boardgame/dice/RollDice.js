@@ -5,9 +5,11 @@ function RollDice({ rolled }) {
 
   return (
     <div
+      className="board__dice"
       onClick={(event) => {
-        setRoll(roll - roll + Math.floor(Math.random() * 6) + 1);
-        return rolled(event, roll);
+        let newRoll = roll - roll + Math.floor(Math.random() * 6) + 1;
+        setRoll(newRoll);
+        return rolled(event, newRoll);
       }}
       key={roll}
     >
